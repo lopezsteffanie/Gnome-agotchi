@@ -44,7 +44,7 @@ public class MiniGamePetController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.CompareTag("Ground"))
+        if (collision.collider.CompareTag("Ground") && collision.transform.position.y + 1.5f < transform.position.y)
         {
             grounded = true;
         }
