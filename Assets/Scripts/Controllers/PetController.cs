@@ -17,6 +17,7 @@ public class PetController : MonoBehaviour
 
     private void Update()
     {
+        r2d.gravityScale = 0;
         if(Vector3.Distance(transform.position, destination) > 0.5f)
         {
             transform.position = Vector3.MoveTowards(transform.position, destination, speed*Time.deltaTime);

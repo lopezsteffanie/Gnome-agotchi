@@ -1,6 +1,3 @@
-using System.Numerics;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -8,7 +5,7 @@ using TMPro;
 public class MiniGameUIController : MonoBehaviour
 {
     public static MiniGameUIController instance;
-    public GameObject miniGamePrefab;
+    public GameObject miniGamePrefab, miniGame;
     public TextMeshProUGUI scoreText, timerText;
     public MiniGameEndPanelController miniGameEndUI;
     public MiniGamePetController miniGamePetController;
@@ -27,7 +24,7 @@ public class MiniGameUIController : MonoBehaviour
     private void OnEnable()
     {
         miniGamePetController.enabled = true;
-        GameObject miniGame = Instantiate(miniGamePrefab);
+        miniGame = Instantiate(miniGamePrefab);
         miniGame.GetComponent<BaseMiniGameController>().Initialize(miniGamePetController.transform);
     }
 
@@ -40,7 +37,12 @@ public class MiniGameUIController : MonoBehaviour
     public void UpdateScore(int score)
     {
         this.score = score;
+        if (score >= 3) FinishMiniGame(score, timeRemaining);
         scoreText.text = "Score: " + score;
+    }
+
+    private void GoalReached()
+    { 
     }
 
     public void UpdateTimer(float timer)
@@ -52,12 +54,19 @@ public class MiniGameUIController : MonoBehaviour
     public void FinishMiniGame(int score, float timeRemaining)
     {
         miniGameEndUI.gameObject.SetActive(true);
+        Camera.main.orthographicSize = 5;
+        Camera.main.transform.position = new Vector3(0, 0, -10);
         miniGameEndUI.Initialize(score, timeRemaining, timeRemaining > 0);
+        Destroy(miniGame);
     }
 
     public void LoseMiniGame()
     {
         miniGameEndUI.gameObject.SetActive(true);
+        Camera.main.orthographicSize = 5;
+        Camera.main.transform.position = new Vector3(0, 0, -10);
         miniGameEndUI.Initialize(score, timeRemaining, false);
+        Destroy(miniGame);
     }
+
 }
