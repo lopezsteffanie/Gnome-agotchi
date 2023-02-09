@@ -6,6 +6,7 @@ public class MiniGamePetController : MonoBehaviour
 {
     public float speed, jumpSpeed;
     private Rigidbody2D r2d;
+    private bool grounded;
 
     private void OnEnable()
     {
@@ -38,6 +39,22 @@ public class MiniGamePetController : MonoBehaviour
         if (Input.GetAxis("Horizontal") != 0)
         {
             r2d.AddForce(new Vector2(speed * Time.deltaTime * Input.GetAxis("Horizontal"), 0));
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("Ground"))
+        {
+            grounded = true;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("Ground"))
+        {
+            grounded = false;
         }
     }
 }
