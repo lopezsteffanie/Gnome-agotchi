@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 119741726468031815}
   m_Layer: 0
   m_Name: Pet
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -76,13 +76,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2424724273850386781}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 995dd6995fb814aa89182cda182c7a28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1500
-  jumpSpeed: 50000
+  speed: 1.5
+  jumpSpeed: 5
   grounded: 0
 --- !u!61 &5227913610097568022
 BoxCollider2D:
@@ -125,12 +125,12 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 5
   m_AngularDrag: 0.05
-  m_GravityScale: 0
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!1001 &1898559411147030732
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -140,7 +140,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4323262508535840147, guid: 6f3ea658bb4b349e896b1ece8b22751e, type: 3}
       propertyPath: m_Bounds.m_Center.y
-      value: -0.23585463
+      value: -0.2358551
       objectReference: {fileID: 0}
     - target: {fileID: 4323262508535840147, guid: 6f3ea658bb4b349e896b1ece8b22751e, type: 3}
       propertyPath: m_Bounds.m_Extent.x
@@ -148,7 +148,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4323262508535840147, guid: 6f3ea658bb4b349e896b1ece8b22751e, type: 3}
       propertyPath: m_Bounds.m_Extent.y
-      value: 7.0158567
+      value: 7.0158577
       objectReference: {fileID: 0}
     - target: {fileID: 4323262508535840148, guid: 6f3ea658bb4b349e896b1ece8b22751e, type: 3}
       propertyPath: m_Name
@@ -209,6 +209,14 @@ PrefabInstance:
     - target: {fileID: 4323262508535840149, guid: 6f3ea658bb4b349e896b1ece8b22751e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4323262510467776712, guid: 6f3ea658bb4b349e896b1ece8b22751e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.7764173
+      objectReference: {fileID: 0}
+    - target: {fileID: 4323262510467776712, guid: 6f3ea658bb4b349e896b1ece8b22751e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.00004079053
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f3ea658bb4b349e896b1ece8b22751e, type: 3}

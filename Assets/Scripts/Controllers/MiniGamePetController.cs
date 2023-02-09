@@ -10,10 +10,11 @@ public class MiniGamePetController : MonoBehaviour
 
     private void OnEnable()
     {
-        GetComponent<PetController>().enabled = false;
+        // GetComponent<PetController>().enabled = false;
         GetComponent<NeedsController>().enabled = false;
         r2d = GetComponent<Rigidbody2D>();
         r2d.simulated = true;
+        r2d.gravityScale = 5;
     }
 
     private void OnDisable()
@@ -33,14 +34,15 @@ public class MiniGamePetController : MonoBehaviour
 
     private void Jump()
     {
-        r2d.AddForce(new Vector2(0, jumpSpeed * Time.deltaTime));
+        grounded = false;
+        r2d.AddForce(new Vector2(0, jumpSpeed * 10000 * Time.deltaTime));
     }
 
     private void CheckHorizontalMovement()
     {
         if (Input.GetAxis("Horizontal") != 0)
         {
-            r2d.AddForce(new Vector2(speed * Time.deltaTime * Input.GetAxis("Horizontal"), 0));
+            r2d.AddForce(new Vector2(speed * 10000 * Time.deltaTime * Input.GetAxis("Horizontal"), 0));
         }
     }
 

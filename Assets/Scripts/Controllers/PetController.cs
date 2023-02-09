@@ -6,11 +6,13 @@ public class PetController : MonoBehaviour
 {
     public Animator petAnimator;
     private Vector3 destination;
+    private Rigidbody2D r2d;
     public float speed;
 
     private void Awake()
     {
-
+        r2d = GetComponent<Rigidbody2D>();
+        r2d.gravityScale = 0;
     }
 
     private void Update()

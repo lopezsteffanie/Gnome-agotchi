@@ -31,6 +31,12 @@ public class MiniGameUIController : MonoBehaviour
         miniGame.GetComponent<BaseMiniGameController>().Initialize(miniGamePetController.transform);
     }
 
+    public virtual void ChangeScore(int amount)
+    {
+        score += amount;
+        UpdateScore(score);
+    }
+
     public void UpdateScore(int score)
     {
         this.score = score;
