@@ -22,13 +22,22 @@ public class MiniGamePetController : MonoBehaviour
     private void Update()
     {
         CheckHorizontalMovement();
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            Jump();
+        }
+    }
+
+    private void Jump()
+    {
+        r2d.AddForce(new Vector2(0, jumpSpeed * Time.deltaTime));
     }
 
     private void CheckHorizontalMovement()
     {
         if (Input.GetAxis("Horizontal") != 0)
         {
-            r2d.AddForce(new Vector2(speed * Time.deltaTime * Input.GetAxis("Horizontal"),0));
+            r2d.AddForce(new Vector2(speed * Time.deltaTime * Input.GetAxis("Horizontal"), 0));
         }
     }
 }
