@@ -21,10 +21,10 @@ public class MiniGamePetController : MonoBehaviour
 
     private void Update()
     {
-        CheckMovement();
+        CheckHorizontalMovement();
     }
 
-    private void CheckMovement()
+    private void CheckHorizontalMovement()
     {
         if (Input.GetAxis("Horizontal") != 0)
         {
