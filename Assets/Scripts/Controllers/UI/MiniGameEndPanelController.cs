@@ -14,4 +14,9 @@ public class MiniGameEndPanelController : MonoBehaviour
             string.Format("You obtained {0} points, and had {1} seconds left", score, timeRemaining);
         titleText.text = victory ? "You won!" : "You lost!";
     }
+    
+    private void OnDisable()
+    {
+        MiniGameUIController.instance.miniGamePetController.enabled = false;
+    }
 }

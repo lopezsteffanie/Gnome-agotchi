@@ -8,4 +8,9 @@ public class MiniGamePetController : MonoBehaviour
     {
         GetComponent<PetController>().enabled = false;
     }
+
+    private void OnDisable()
+    {
+        GetComponent<PetController>().enabled = true;
+    }
 }

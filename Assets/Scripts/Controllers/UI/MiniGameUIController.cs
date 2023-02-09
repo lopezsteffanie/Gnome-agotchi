@@ -9,6 +9,7 @@ public class MiniGameUIController : MonoBehaviour
     public static MiniGameUIController instance;
     public TextMeshProUGUI scoreText, timerText;
     public MiniGameEndPanelController miniGameEndUI;
+    public MiniGamePetController miniGamePetController;
     private int score;
     private float timeRemaining;
 
@@ -19,6 +20,11 @@ public class MiniGameUIController : MonoBehaviour
             instance = this;
         }
         else Debug.LogWarning("More than one MiniGameUIController in the Scene");
+    }
+    
+    private void OnEnable()
+    {
+        miniGamePetController.enabled = true;
     }
 
     public void UpdateScore(int score)
