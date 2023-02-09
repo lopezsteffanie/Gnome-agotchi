@@ -6,11 +6,12 @@ public class MiniGamePetController : MonoBehaviour
 {
     public float speed, jumpSpeed;
     private Rigidbody2D r2d;
-    private bool grounded;
+    public bool grounded;
 
     private void OnEnable()
     {
         GetComponent<PetController>().enabled = false;
+        GetComponent<NeedsController>().enabled = false;
         r2d = GetComponent<Rigidbody2D>();
         r2d.simulated = true;
     }
@@ -18,6 +19,7 @@ public class MiniGamePetController : MonoBehaviour
     private void OnDisable()
     {
         GetComponent<PetController>().enabled = true;
+        GetComponent<NeedsController>().enabled = true;
     }
 
     private void Update()

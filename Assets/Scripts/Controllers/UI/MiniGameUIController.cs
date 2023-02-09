@@ -1,3 +1,4 @@
+using System.Numerics;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,7 @@ using TMPro;
 public class MiniGameUIController : MonoBehaviour
 {
     public static MiniGameUIController instance;
+    public GameObject miniGamePrefab;
     public TextMeshProUGUI scoreText, timerText;
     public MiniGameEndPanelController miniGameEndUI;
     public MiniGamePetController miniGamePetController;
@@ -25,6 +27,8 @@ public class MiniGameUIController : MonoBehaviour
     private void OnEnable()
     {
         miniGamePetController.enabled = true;
+        GameObject miniGame = Instantiate(miniGamePrefab);
+        miniGame.GetComponent<BaseMiniGameController>().Initialize(miniGamePetController.transform);
     }
 
     public void UpdateScore(int score)

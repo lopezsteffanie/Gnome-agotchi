@@ -5,6 +5,7 @@ using UnityEngine;
 public class BaseMiniGameController : MonoBehaviour
 {
     protected int score;
+    public Transform[] startingPositions;
     public float timer, cameraSize;
 
     private void Start()
@@ -13,6 +14,14 @@ public class BaseMiniGameController : MonoBehaviour
         {
             ChangeTimer(30);
         }
+    }
+
+    public void Initialize(Transform pet)
+    {
+        Camera.main.orthographicSize = cameraSize;
+        Camera.main.transform.position = new Vector3(0,0,-10);
+        transform.position = Vector3.zero;
+        pet.position = startingPositions[Random.Range(0,startingPositions.Length)].position;
     }
     protected virtual void ChangeScore(int amount)
     {
@@ -42,6 +51,8 @@ public class BaseMiniGameController : MonoBehaviour
     {
         if(MiniGameUIController.instance == null) return;
         MiniGameUIController.instance.FinishMiniGame(score, timer);
+        Camera.main.orthographicSize = 5;
+        Camera.main.transform.position = new Vector3(0,0,-10);
         Destroy(gameObject);
     }
 }
