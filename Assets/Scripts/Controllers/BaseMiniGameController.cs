@@ -5,25 +5,26 @@ using UnityEngine;
 public class BaseMiniGameController : MonoBehaviour
 {
     protected int score;
-    public float timer;
+    public float timer, cameraSize;
 
-    protected virtual void Awake()
+    private void Start()
     {
         if(timer == 0)
         {
             ChangeTimer(30);
         }
     }
-
     protected virtual void ChangeScore(int amount)
     {
         score += amount;
+        if(MiniGameUIController.instance == null) return;
         MiniGameUIController.instance.UpdateScore(score);
     }
 
     protected virtual void ChangeTimer(float change)
     {
         timer += change;
+        if(MiniGameUIController.instance == null) return;
         MiniGameUIController.instance.UpdateTimer(timer);
     }
 
@@ -39,6 +40,7 @@ public class BaseMiniGameController : MonoBehaviour
 
     protected virtual void GoalReached()
     {
+        if(MiniGameUIController.instance == null) return;
         MiniGameUIController.instance.FinishMiniGame(score, timer);
         Destroy(gameObject);
     }
