@@ -6,24 +6,28 @@ public class NeedsController : MonoBehaviour
     public int food, happiness, energy;
     public int foodTickRate, happinessTickRate, energyTickRate;
     public DateTime lastTimeFed, lastTimeHappy, lastTimeGainedEnergy;
-    public PetNameController petNameController;
+    // public StartGameUIController startGameUIController;
+    // public string inputGnomeName;
 
     private void Awake()
     {
-        string displayGnomeName = petNameController.displayGnomeName.ToString();
+        // inputGnomeName = GnomeName();
         try
         {
-            Initialize(displayGnomeName, 100, 100, 100, 5, 2, 1);
+            // Initialize(inputGnomeName, food, happiness, energy, foodTickRate, happinessTickRate, energyTickRate);
+            Initialize(food, happiness, energy, foodTickRate, happinessTickRate, energyTickRate);
         }
         catch (System.Exception)
         {
             Debug.Log("Initialize was not set to an object");
         }
     } 
-    public void Initialize(string displayGnomeName, int food, int happiness, int energy,
+    // public void Initialize(string inputGnomeName, int food, int happiness, int energy,
+    // int foodTickRate, int happinessTickRate, int energyTickRate)
+    public void Initialize(int food, int happiness, int energy,
         int foodTickRate, int happinessTickRate, int energyTickRate)
     {
-        displayGnomeName = petNameController.displayGnomeName.ToString();
+        // this.inputGnomeName = GnomeName();
         lastTimeFed = DateTime.Now;
         lastTimeHappy = DateTime.Now;
         lastTimeGainedEnergy = DateTime.Now;
@@ -36,11 +40,15 @@ public class NeedsController : MonoBehaviour
         PetUIController.instance.UpdateImages(food, happiness, energy);
     }
 
-    public void Initialize(string displayGnomeName, int food, int happiness, int energy,
+    // public void Initialize(string inputGnomeName, int food, int happiness, int energy,
+    //     int foodTickRate, int happinessTickRate, int energyTickRate,
+    //     DateTime lastTimeFed, DateTime lastTimeHappy, DateTime lastTimeGainedEnergy)
+    public void Initialize(int food, int happiness, int energy,
         int foodTickRate, int happinessTickRate, int energyTickRate,
         DateTime lastTimeFed, DateTime lastTimeHappy, DateTime lastTimeGainedEnergy)
     {
-        this.displayGnomeName = petNameController.displayGnomeName.ToString();
+        // this.inputGnomeName = GnomeName();
+
         this.lastTimeFed = lastTimeFed;
         this.lastTimeHappy = lastTimeHappy;
         this.lastTimeGainedEnergy = lastTimeGainedEnergy;
@@ -76,6 +84,11 @@ public class NeedsController : MonoBehaviour
             PetUIController.instance.UpdateImages(food, happiness, energy);
         }
     }
+
+    // public string GnomeName()
+    // {
+    //     return GetComponent<StartGameUIController>().inputGnomeName.ToString();
+    // }
 
     public void ChangeFood(int amount)
     {
