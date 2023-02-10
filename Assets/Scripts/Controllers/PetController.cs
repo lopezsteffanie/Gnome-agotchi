@@ -6,18 +6,10 @@ public class PetController : MonoBehaviour
 {
     public Animator petAnimator;
     private Vector3 destination;
-    private Rigidbody2D r2d;
     public float speed;
-
-    private void Awake()
-    {
-        r2d = GetComponent<Rigidbody2D>();
-        r2d.gravityScale = 0;
-    }
 
     private void Update()
     {
-        r2d.gravityScale = 0;
         if(Vector3.Distance(transform.position, destination) > 0.5f)
         {
             transform.position = Vector3.MoveTowards(transform.position, destination, speed*Time.deltaTime);

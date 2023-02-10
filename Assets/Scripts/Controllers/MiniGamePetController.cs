@@ -6,23 +6,23 @@ public class MiniGamePetController : MonoBehaviour
     private Rigidbody2D r2d;
     public bool grounded;
 
-    private void OnEnable()
-    {
-        // GetComponent<PetController>().enabled = false;
-        GetComponent<NeedsController>().enabled = false;
-        r2d = GetComponent<Rigidbody2D>();
-        r2d.simulated = true;
-        r2d.gravityScale = 5f;
-    }
+    // private void OnEnable()
+    // {
+    //     // GetComponent<PetController>().enabled = false;
+    //     GetComponent<NeedsController>().enabled = false;
+    //     r2d = GetComponent<Rigidbody2D>();
+    //     r2d.simulated = true;
+    //     r2d.gravityScale = 5f;
+    // }
 
-    private void OnDisable()
-    {
-        r2d.velocity = Vector3.zero;
-        transform.position = Vector3.zero;
-        r2d.simulated = false;
-        GetComponent<PetController>().enabled = true;
-        GetComponent<NeedsController>().enabled = true;
-    }
+    // private void OnDisable()
+    // {
+    //     r2d.velocity = Vector3.zero;
+    //     transform.position = Vector3.zero;
+    //     r2d.simulated = false;
+    //     GetComponent<PetController>().enabled = true;
+    //     GetComponent<NeedsController>().enabled = true;
+    // }
 
     private void Update()
     {
@@ -44,7 +44,6 @@ public class MiniGamePetController : MonoBehaviour
         if (Input.GetAxis("Horizontal") != 0)
         {
             r2d.AddForce(new Vector2(speed * 10000 * Time.deltaTime * Input.GetAxis("Horizontal"), 0));
-            r2d.AddForce(new Vector2(speed * 10000 * Time.deltaTime * Input.GetAxis("Vertical"), 0));
         }
     }
 
