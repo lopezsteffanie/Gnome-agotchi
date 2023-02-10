@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class StartGameUIController : MonoBehaviour
+public class PetNameController : MonoBehaviour
 {
     public TextMeshProUGUI displayGnomeName;
     public TMP_InputField inputGnomeName;
