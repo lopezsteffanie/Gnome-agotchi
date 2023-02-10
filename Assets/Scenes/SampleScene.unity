@@ -1033,7 +1033,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 363098227}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92ee8743d37904f7c9d86a7110a8e4ca, type: 3}
+  m_Script: {fileID: 11500000, guid: 8b288b0a8970d4446b65bdb9bfec48c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   displayGnomeName: {fileID: 1513736172}
@@ -5729,7 +5729,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   needsController: {fileID: 1040911688}
-  petNameController: {fileID: 0}
 --- !u!114 &2068807067
 MonoBehaviour:
   m_ObjectHideFlags: 0
