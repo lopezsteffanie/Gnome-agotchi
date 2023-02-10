@@ -8,7 +8,6 @@ public class DatabaseManager : MonoBehaviour
     public static DatabaseManager instance;
     private Database database;
     public NeedsController needsController;
-    // public PetNameController petNameController;
 
     private void Awake()
     {
@@ -26,7 +25,7 @@ public class DatabaseManager : MonoBehaviour
         { 
             Pet pet = new Pet
             (
-                // petNameController.petName.ToString(),
+                needsController.displayGnomeName,
                 needsController.lastTimeFed.ToString(),
                 needsController.lastTimeHappy.ToString(),
                 needsController.lastTimeGainedEnergy.ToString() ,
@@ -45,6 +44,7 @@ public class DatabaseManager : MonoBehaviour
         {
             needsController.Initialize
                 (
+                    pet.displayGnomeName,
                     pet.food,
                     pet.happiness,
                     pet.energy,
@@ -53,10 +53,6 @@ public class DatabaseManager : MonoBehaviour
                     DateTime.Parse(pet.lastTimeHappy),
                     DateTime.Parse(pet.lastTimeGainedEnergy)
                 );
-            // petNameController.Initialize
-            //     (
-            //         pet.petName
-            //     );
         }
     }
 

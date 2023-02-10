@@ -4,12 +4,12 @@ using System;
 [Serializable]
 public class Pet
 {
-    public string petName, lastTimeFed, lastTimeHappy, lastTimeGainedEnergy;
+    public string gnomeName, lastTimeFed, lastTimeHappy, lastTimeGainedEnergy;
     public int food, happiness, energy;
 
     public Pet
         (
-            // string petName,
+            string gnomeName,
             string lastTimeFed,
             string lastTimeHappy,
             string lastTimeGainedEnergy,
@@ -18,7 +18,7 @@ public class Pet
             int energy
         )
     {
-        // this.petName = petName;
+        this.gnomeName = gnomeName;
         this.lastTimeFed = lastTimeFed;
         this.lastTimeHappy = lastTimeHappy;
         this.lastTimeGainedEnergy = lastTimeGainedEnergy;
