@@ -8,7 +8,7 @@ public class DatabaseManager : MonoBehaviour
     public static DatabaseManager instance;
     private Database database;
     public NeedsController needsController;
-    public PetNameController petNameController;
+    // public PetNameController petNameController;
 
     private void Awake()
     {
@@ -25,13 +25,14 @@ public class DatabaseManager : MonoBehaviour
         if (TimingManager.instance.gameHourTimer < 0)
         { 
             Pet pet = new Pet
-            (petNameController.petName.ToString(),
-            needsController.lastTimeFed.ToString(),
-            needsController.lastTimeHappy.ToString(),
-            needsController.lastTimeGainedEnergy.ToString() ,
-            needsController.food,
-            needsController.happiness,
-            needsController.energy
+            (
+                // petNameController.petName.ToString(),
+                needsController.lastTimeFed.ToString(),
+                needsController.lastTimeHappy.ToString(),
+                needsController.lastTimeGainedEnergy.ToString() ,
+                needsController.food,
+                needsController.happiness,
+                needsController.energy
             );
             SavePet(pet);
         }
@@ -52,10 +53,10 @@ public class DatabaseManager : MonoBehaviour
                     DateTime.Parse(pet.lastTimeHappy),
                     DateTime.Parse(pet.lastTimeGainedEnergy)
                 );
-            petNameController.Initialize
-                (
-                    pet.petName
-                );
+            // petNameController.Initialize
+            //     (
+            //         pet.petName
+            //     );
         }
     }
 

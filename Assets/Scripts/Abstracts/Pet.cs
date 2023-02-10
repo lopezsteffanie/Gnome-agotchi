@@ -8,15 +8,17 @@ public class Pet
     public int food, happiness, energy;
 
     public Pet
-        (string petName,
-        string lastTimeFed,
-        string lastTimeHappy,
-        string lastTimeGainedEnergy,
-        int food,
-        int happiness,
-        int energy)
+        (
+            // string petName,
+            string lastTimeFed,
+            string lastTimeHappy,
+            string lastTimeGainedEnergy,
+            int food,
+            int happiness,
+            int energy
+        )
     {
-        this.petName = petName;
+        // this.petName = petName;
         this.lastTimeFed = lastTimeFed;
         this.lastTimeHappy = lastTimeHappy;
         this.lastTimeGainedEnergy = lastTimeGainedEnergy;
