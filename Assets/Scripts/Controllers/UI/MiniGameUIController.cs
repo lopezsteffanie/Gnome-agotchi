@@ -26,6 +26,7 @@ public class MiniGameUIController : MonoBehaviour
         miniGamePetController.enabled = true;
         miniGame = Instantiate(miniGamePrefab);
         miniGame.GetComponent<BaseMiniGameController>().Initialize(miniGamePetController.transform);
+        scoreText.text = "Score: " + score;
     }
 
     public virtual void ChangeScore(int amount)
@@ -39,10 +40,7 @@ public class MiniGameUIController : MonoBehaviour
         this.score = score;
         if (score >= 3) FinishMiniGame(score, timeRemaining);
         scoreText.text = "Score: " + score;
-    }
-
-    private void GoalReached()
-    { 
+        score = 0;
     }
 
     public void UpdateTimer(float timer)
@@ -58,6 +56,7 @@ public class MiniGameUIController : MonoBehaviour
         Camera.main.transform.position = new Vector3(0, 0, -10);
         miniGameEndUI.Initialize(score, timeRemaining, timeRemaining > 0);
         Destroy(miniGame);
+        ResetScoreAndTimer();
     }
 
     public void LoseMiniGame()
@@ -67,6 +66,12 @@ public class MiniGameUIController : MonoBehaviour
         Camera.main.transform.position = new Vector3(0, 0, -10);
         miniGameEndUI.Initialize(score, timeRemaining, false);
         Destroy(miniGame);
+        ResetScoreAndTimer();
     }
 
+    private void ResetScoreAndTimer()
+    {
+        score = 0;
+        scoreText.text = "Score: " + score;
+    }
 }

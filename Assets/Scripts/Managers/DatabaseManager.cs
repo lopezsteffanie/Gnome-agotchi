@@ -48,7 +48,7 @@ public class DatabaseManager : MonoBehaviour
                     pet.food,
                     pet.happiness,
                     pet.energy,
-                    10,10,10,
+                    5,2,1,
                     DateTime.Parse(pet.lastTimeFed),
                     DateTime.Parse(pet.lastTimeHappy),
                     DateTime.Parse(pet.lastTimeGainedEnergy)
