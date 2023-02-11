@@ -25,7 +25,6 @@ public class DatabaseManager : MonoBehaviour
         { 
             Pet pet = new Pet
             (
-                // needsController.inputGnomeName,
                 needsController.lastTimeFed.ToString(),
                 needsController.lastTimeHappy.ToString(),
                 needsController.lastTimeGainedEnergy.ToString() ,
@@ -44,7 +43,6 @@ public class DatabaseManager : MonoBehaviour
         {
             needsController.Initialize
                 (
-                    // pet.inputGnomeName,
                     pet.food,
                     pet.happiness,
                     pet.energy,
