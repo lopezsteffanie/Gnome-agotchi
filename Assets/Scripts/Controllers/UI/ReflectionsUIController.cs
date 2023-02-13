@@ -6,15 +6,17 @@ using UnityEngine.UI;
 
 public class ReflectionsUIController : MonoBehaviour
 {
-    [SerializeField] List<ReflectionsSO> reflections = new List<ReflectionsSO>();
+    public List<ReflectionsSO> reflections = new List<ReflectionsSO>();
     List<ReflectionsSO> usedReflections = new List<ReflectionsSO>();
     ReflectionsSO currentReflection;
-    [SerializeField] GameObject[] reflectionButtons;
+    public GameObject[] reflectionButtons;
+    public Button shuffleButton;
     int reflectionTypeIndex;
-    [SerializeField] GameObject shuffleButton;
 
     public void Start()
     {
+        Button btn = shuffleButton.GetComponent<Button>();
+        btn.onClick.AddListener(Reset);
         DisplayReflection();
     }
 
@@ -48,10 +50,15 @@ public class ReflectionsUIController : MonoBehaviour
 
     public void Reset()
     {
-        foreach (ReflectionsSO reflection in usedReflections)
+        while (usedReflections.Count > 0)
         {
-            reflections.Add(reflection);
-            usedReflections.Remove(reflection);
+            int index = Random.Range(0, usedReflections.Count);
+            currentReflection = usedReflections[index];
+            if (usedReflections.Contains(currentReflection))
+            {
+                reflections.Add(currentReflection);
+                usedReflections.Remove(currentReflection);
+            }
         }
         DisplayReflection();
     }
