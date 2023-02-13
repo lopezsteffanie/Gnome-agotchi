@@ -6,18 +6,30 @@ using UnityEngine.UI;
 
 public class GoalsUIController : MonoBehaviour
 {
+    [Header("Goals")]
     public List <GoalsForTheDaySO> goals = new List<GoalsForTheDaySO>();
     List<GoalsForTheDaySO> usedGoals = new List<GoalsForTheDaySO>();
     GoalsForTheDaySO currentGoal;
     public GameObject[] goalButtons;
     public Button shuffleButton;
     int goalTypeIndex;
+    [Header("Journal")]
+    public GameObject journalUI;
+    public GameObject[] journalBullets;
 
     public void Start()
     {
-        Button btn = shuffleButton.GetComponent<Button>();
-        btn.onClick.AddListener(Reset);
+        Button shuffleBtn = shuffleButton.GetComponent<Button>();
+        shuffleBtn.onClick.AddListener(Reset);
+
         DisplayGoal();
+    }
+    public void Update()
+    {
+        for (int i = 0; i < goalButtons.Length; i++)
+        {
+            goalButtons[i].GetComponent<Button>().onClick.AddListener(OpenJournal);
+        }
     }
 
     public void GetRandomGoal()
@@ -60,16 +72,9 @@ public class GoalsUIController : MonoBehaviour
         DisplayGoal();
     }
 
-    public void OnGoalSelected(int index)
+    public void OpenJournal()
     {
-
-    }
-
-    public string DisplayPrompt(int index)
-    {
-        TextMeshProUGUI prompt = goalButtons[index].transform.Find("ReflectionContent").GetComponentInChildren<TextMeshProUGUI>();
-        prompt.text = currentGoal.GetGoal();
-        return prompt.text;
+        journalUI.SetActive(true);
     }
 }
 

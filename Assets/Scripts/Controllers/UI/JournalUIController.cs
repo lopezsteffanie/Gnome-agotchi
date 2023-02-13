@@ -17,6 +17,5 @@ public class JournalUIController : MonoBehaviour
     }
     private void DisplayPrompt()
     {
-        promptText.text = buttonText.text;
     }
 }
