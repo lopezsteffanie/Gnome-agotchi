@@ -59,4 +59,46 @@ public class GoalsUIController : MonoBehaviour
         }
         DisplayGoal();
     }
+
+    public void OnGoalSelected(int index)
+    {
+
+    }
+
+    public string DisplayPrompt(int index)
+    {
+        TextMeshProUGUI prompt = goalButtons[index].transform.Find("ReflectionContent").GetComponentInChildren<TextMeshProUGUI>();
+        prompt.text = currentGoal.GetGoal();
+        return prompt.text;
+    }
 }
+
+// public void OnAnswerSelected(int index)
+//     {
+//         hasAnsweredEarly = true;
+//         DisplayAnswer(index);
+//         SetButtonState(false);
+//         timer.CancelTimer();
+//         scoreText.text  = "Score: " + scoreKeeper.CalculateScore() + "%";
+//     }
+//     void DisplayAnswer(int index)
+//     {
+//         Image buttonImage;
+//         progressBar.value++;
+
+//         if(index == currentQuestion.GetAnswerIndex())
+//         {
+//             questionText.text = "Correct!";
+//             buttonImage = answerButtons[index].GetComponent<Image>();
+//             buttonImage.sprite = correctAnswerSprite;
+//             scoreKeeper.IncrementCorrectAnswers();
+//         }
+//         else
+//         {
+//             correctAnswerIndex = currentQuestion.GetAnswerIndex();
+//             string correctAnswer = currentQuestion.GetAnswer(correctAnswerIndex);
+//             questionText.text = "Sorry, the correct answer was:\n" + correctAnswer;
+//             buttonImage = answerButtons[correctAnswerIndex].GetComponent<Image>();
+//             buttonImage.sprite = correctAnswerSprite;
+//         }
+//     }
