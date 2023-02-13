@@ -15,6 +15,7 @@ public class GoalsUIController : MonoBehaviour
     int goalTypeIndex;
     [Header("Journal")]
     public GameObject journalUI;
+    public GameObject activeBullet;
     public GameObject[] journalBullets;
 
     public void Start()
@@ -75,6 +76,16 @@ public class GoalsUIController : MonoBehaviour
     public void OpenJournal()
     {
         journalUI.SetActive(true);
+    }
+    
+    public void NewBulletPoint()
+    {
+        for (int i = 0; i < journalBullets.Length; i++)
+        {
+            activeBullet = journalBullets[i];
+            TMP_InputField inputBullet = activeBullet.GetComponent<TMP_InputField>();
+            inputBullet.onValueChanged.addListener(delegate {Instantiate(activeBullet); });
+        }
     }
 }
 
