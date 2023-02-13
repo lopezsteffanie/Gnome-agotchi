@@ -16,6 +16,8 @@ public class GoalsUIController : MonoBehaviour
     [Header("Journal")]
     public GameObject journalUI;
     public GameObject activeBullet;
+    public GameObject activeBulletText;
+    public GameObject horizontalGroup;
     public GameObject[] journalBullets;
 
     public void Start()
@@ -30,6 +32,12 @@ public class GoalsUIController : MonoBehaviour
         for (int i = 0; i < goalButtons.Length; i++)
         {
             goalButtons[i].GetComponent<Button>().onClick.AddListener(OpenJournal);
+        }
+
+        for (int i = 0; i < journalBullets.Length; i++)
+        {
+            activeBullet = journalBullets[i];
+            activeBullet.GetComponentInChildren<Button>().onClick.AddListener(SetEntry);
         }
     }
 
@@ -78,14 +86,28 @@ public class GoalsUIController : MonoBehaviour
         journalUI.SetActive(true);
     }
     
-    public void NewBulletPoint()
+    // public void NewEntry()
+    // {
+    //     for (int i = 0; i < journalBullets.Length; i++)
+    //     {
+    //         activeBullet = journalBullets[i];
+    //         TMP_InputField inputBullet = activeBulletText.GetComponent<TMP_InputField>();
+    //         TextMeshProUGUI displayInput = activeBullet.GetComponent<TextMeshProUGUI>();
+    //         displayInput.text = inputBullet.text;
+    //         string newInput = inputBullet.text;
+    //         if(!string.IsNullOrWhiteSpace(newInput))
+    //         {
+    //             ActivateBullet();
+    //         }
+    //     }
+    // }
+
+    public void SetEntry()
     {
-        for (int i = 0; i < journalBullets.Length; i++)
-        {
-            activeBullet = journalBullets[i];
-            TMP_InputField inputBullet = activeBullet.GetComponent<TMP_InputField>();
-            inputBullet.onValueChanged.addListener(delegate {Instantiate(activeBullet); });
-        }
+        TMP_InputField inputBullet = activeBulletText.GetComponentInChildren<TMP_InputField>();
+        TextMeshProUGUI displayInput = activeBullet.GetComponentInChildren<TextMeshProUGUI>();
+        displayInput.text = inputBullet.text;
+        activeBullet.SetActive(false);
     }
 }
 
