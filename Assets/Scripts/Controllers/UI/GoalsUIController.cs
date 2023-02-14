@@ -17,22 +17,24 @@ public class GoalsUIController : MonoBehaviour
     public GameObject journalUI;
     public GameObject activeBullet;
     public GameObject[] journalBullets;
-    public GameObject bulletPrefab;
+    public TextMeshProUGUI journalPrompt;
+    public Button closeJournalButton;
 
     public void Start()
     {
         Button shuffleBtn = shuffleButton.GetComponent<Button>();
         shuffleBtn.onClick.AddListener(Reset);
+        
+        for (int i = 0; i < goalButtons.Length; i++)
+        {
+            GameObject goal = goalButtons[i];
+            goalButtons[i].GetComponent<Button>().onClick.AddListener(() => OpenJournal(goal));
+        }
 
         DisplayGoal();
     }
     public void Update()
     {
-        for (int i = 0; i < goalButtons.Length; i++)
-        {
-            goalButtons[i].GetComponent<Button>().onClick.AddListener(OpenJournal);
-        }
-
         int count = 1;
         foreach (GameObject journal in journalBullets)
         {
@@ -89,9 +91,11 @@ public class GoalsUIController : MonoBehaviour
         DisplayGoal();
     }
 
-    public void OpenJournal()
+    public void OpenJournal(GameObject goal)
     {
         journalUI.SetActive(true);
+        TextMeshProUGUI goalText = goal.transform.Find("ReflectionContent").GetComponentInChildren<TextMeshProUGUI>();
+        journalPrompt.text = goalText.text;
     }
 
     public void SetEntry(GameObject bullet, int index)
