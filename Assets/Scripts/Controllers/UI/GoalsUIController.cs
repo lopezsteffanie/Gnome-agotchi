@@ -16,9 +16,8 @@ public class GoalsUIController : MonoBehaviour
     [Header("Journal")]
     public GameObject journalUI;
     public GameObject activeBullet;
-    public GameObject activeBulletText;
-    public GameObject horizontalGroup;
     public GameObject[] journalBullets;
+    public GameObject bulletPrefab;
 
     public void Start()
     {
@@ -34,10 +33,19 @@ public class GoalsUIController : MonoBehaviour
             goalButtons[i].GetComponent<Button>().onClick.AddListener(OpenJournal);
         }
 
-        for (int i = 0; i < journalBullets.Length; i++)
+        int count = 1;
+        foreach (GameObject journal in journalBullets)
         {
-            activeBullet = journalBullets[i];
-            activeBullet.GetComponentInChildren<Button>().onClick.AddListener(SetEntry);
+            if (journal.activeSelf)
+            {
+                count++;
+            }
+        }
+
+        for (int i = 0; i < count; i++)
+        {
+            Button setEntryBtn = activeBullet.transform.Find("EnterButton").GetComponentInChildren<Button>();
+            setEntryBtn.onClick.AddListener(() => SetEntry(activeBullet, i));
         }
     }
 
@@ -85,29 +93,21 @@ public class GoalsUIController : MonoBehaviour
     {
         journalUI.SetActive(true);
     }
-    
-    // public void NewEntry()
-    // {
-    //     for (int i = 0; i < journalBullets.Length; i++)
-    //     {
-    //         activeBullet = journalBullets[i];
-    //         TMP_InputField inputBullet = activeBulletText.GetComponent<TMP_InputField>();
-    //         TextMeshProUGUI displayInput = activeBullet.GetComponent<TextMeshProUGUI>();
-    //         displayInput.text = inputBullet.text;
-    //         string newInput = inputBullet.text;
-    //         if(!string.IsNullOrWhiteSpace(newInput))
-    //         {
-    //             ActivateBullet();
-    //         }
-    //     }
-    // }
 
-    public void SetEntry()
+    public void SetEntry(GameObject bullet, int index)
     {
-        TMP_InputField inputBullet = activeBulletText.GetComponentInChildren<TMP_InputField>();
-        TextMeshProUGUI displayInput = activeBullet.GetComponentInChildren<TextMeshProUGUI>();
-        displayInput.text = inputBullet.text;
-        activeBullet.SetActive(false);
+        TextMeshProUGUI displayGoal = bullet.transform.Find("DisplayGoal").GetComponentInChildren<TextMeshProUGUI>();
+        TMP_InputField inputGoal = bullet.transform.Find("InputGoal").GetComponentInChildren<TMP_InputField>();
+        displayGoal.text = inputGoal.text;
+
+        GameObject inputField = GameObject.Find($"Individual Reflection ({index - 2})/InputGoal");
+        inputField.SetActive(false);
+        
+        GameObject enterButton = GameObject.Find($"Individual Reflection ({index - 2})/EnterButton");
+        enterButton.SetActive(false);
+
+        journalBullets[index - 1].SetActive(true);
+        activeBullet = journalBullets[index - 1];
     }
 }
 
