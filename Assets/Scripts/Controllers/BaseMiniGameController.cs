@@ -24,6 +24,13 @@ public class BaseMiniGameController : MonoBehaviour
         pet.position = startingPositions[Random.Range(0,startingPositions.Length)].position;
     }
 
+    protected virtual void ChangeScore(int amount)
+    {
+        score += amount;
+        if(MiniGameUIController.instance == null) return;
+        MiniGameUIController.instance.UpdateScore(score);
+    }
+
     protected virtual void ChangeTimer(float change)
     {
         timer += change;

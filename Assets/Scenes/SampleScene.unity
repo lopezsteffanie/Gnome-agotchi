@@ -3405,6 +3405,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   miniGamePrefab: {fileID: 286756085962134434, guid: c680d32f0ad3f402a9a917032fe7ff62, type: 3}
   miniGame: {fileID: 0}
+  pauseButton: {fileID: 1880880418}
   scoreText: {fileID: 1841180721}
   timerText: {fileID: 1690335543}
   miniGameEndUI: {fileID: 1937823834}
@@ -4087,7 +4088,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 604854256}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -11831,7 +11832,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 2424724273950458906}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 19833218}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 995dd6995fb814aa89182cda182c7a28, type: 3}
   m_Name: 
@@ -12243,7 +12244,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 604854256}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -12920,7 +12921,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1937823831
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14570,9 +14571,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2424724273268407640, guid: ac1902dade2dd45028bb115f86fc47c1, type: 3}
+    - target: {fileID: 119741726468031815, guid: ac1902dade2dd45028bb115f86fc47c1, type: 3}
+      propertyPath: m_GravityScale
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1346664227356702297, guid: ac1902dade2dd45028bb115f86fc47c1, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2424724273268407640, guid: ac1902dade2dd45028bb115f86fc47c1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2424724273850386768, guid: ac1902dade2dd45028bb115f86fc47c1, type: 3}
       propertyPath: m_RootOrder
@@ -14624,7 +14633,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2424724273850386781, guid: ac1902dade2dd45028bb115f86fc47c1, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5999812702723893445, guid: ac1902dade2dd45028bb115f86fc47c1, type: 3}
+      propertyPath: jumpSpeed
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5999812702723893445, guid: ac1902dade2dd45028bb115f86fc47c1, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac1902dade2dd45028bb115f86fc47c1, type: 3}

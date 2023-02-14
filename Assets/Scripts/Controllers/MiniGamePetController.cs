@@ -5,18 +5,19 @@ public class MiniGamePetController : MonoBehaviour
     public float speed, jumpSpeed;
     private Rigidbody2D r2d;
     public bool grounded;
+    public GameObject pet;
 
     private void OnEnable()
     {
         GetComponent<PetController>().enabled = false;
-        GetComponentInChildren<Animator>().enabled = false;
+        // GetComponentInChildren<Animator>().enabled = false;
         GetComponent<NeedsController>().enabled = false;
         r2d = GetComponent<Rigidbody2D>();
         r2d.simulated = true;
-        r2d.gravityScale = 5f;
+        // r2d.gravityScale = 5f;
     }
 
-    private void OnDisable()
+    public void OnDisable()
     {
         r2d.velocity = Vector3.zero;
         transform.position = Vector3.zero;

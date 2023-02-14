@@ -19,6 +19,7 @@ public class MiniGameEndPanelController : MonoBehaviour
     
     private void OnDisable()
     {
+        pauseButton.SetActive(true);
         MiniGameUIController.instance.miniGamePetController.enabled = false;
     }
 }

@@ -5,7 +5,7 @@ using TMPro;
 public class MiniGameUIController : MonoBehaviour
 {
     public static MiniGameUIController instance;
-    public GameObject miniGamePrefab, miniGame;
+    public GameObject miniGamePrefab, miniGame, pauseButton;
     public TextMeshProUGUI scoreText, timerText;
     public MiniGameEndPanelController miniGameEndUI;
     public MiniGamePetController miniGamePetController;
@@ -19,6 +19,12 @@ public class MiniGameUIController : MonoBehaviour
             instance = this;
         }
         else Debug.LogWarning("More than one MiniGameUIController in the Scene");
+    }
+
+    public void Start()
+    {
+        Button pause = pauseButton.GetComponent<Button>();
+        pause.onClick.AddListener(PauseMiniGame);
     }
     
     private void OnEnable()
@@ -73,5 +79,11 @@ public class MiniGameUIController : MonoBehaviour
     {
         score = 0;
         scoreText.text = "Score: " + score;
+    }
+
+    public void PauseMiniGame()
+    {
+        miniGamePetController.OnDisable();
+        miniGame.SetActive(false);
     }
 }
