@@ -78,15 +78,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 286756085962134434}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44e701c10dffb47afb30824d6250a208, type: 3}
+  m_Script: {fileID: 11500000, guid: 9880be963d534408fa67ce18c4355d81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingPositions:
-  - {fileID: 286756087752505061}
-  - {fileID: 286756086965740165}
-  - {fileID: 286756087054215338}
-  timer: 30
-  cameraSize: 20
+  startingPositions: []
+  timer: 0
+  cameraSize: 0
 --- !u!1 &286756086261613101
 GameObject:
   m_ObjectHideFlags: 0
