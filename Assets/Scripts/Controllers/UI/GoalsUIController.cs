@@ -12,18 +12,18 @@ public class GoalsUIController : MonoBehaviour
     GoalsForTheDaySO currentGoal;
     public GameObject[] goalButtons;
     public Button shuffleButton;
-    int goalTypeIndex;
     [Header("Journal")]
-    public GameObject journalUI;
-    public GameObject activeBullet;
-    public GameObject[] journalBullets;
     public TextMeshProUGUI journalPrompt;
     public Button closeJournalButton;
+    public GameObject journalPrefab, journalUI, closeJournal;
 
     public void Start()
     {
         Button shuffleBtn = shuffleButton.GetComponent<Button>();
         shuffleBtn.onClick.AddListener(Reset);
+
+        Button closeJournalBtn = closeJournalButton.GetComponent<Button>();
+        closeJournalBtn.onClick.AddListener(CloseJournal);
         
         for (int i = 0; i < goalButtons.Length; i++)
         {
@@ -32,23 +32,6 @@ public class GoalsUIController : MonoBehaviour
         }
 
         DisplayGoal();
-    }
-    public void Update()
-    {
-        int count = 1;
-        foreach (GameObject journal in journalBullets)
-        {
-            if (journal.activeSelf)
-            {
-                count++;
-            }
-        }
-
-        for (int i = 0; i < count; i++)
-        {
-            Button setEntryBtn = activeBullet.transform.Find("EnterButton").GetComponentInChildren<Button>();
-            setEntryBtn.onClick.AddListener(() => SetEntry(activeBullet, i));
-        }
     }
 
     public void GetRandomGoal()
@@ -93,54 +76,16 @@ public class GoalsUIController : MonoBehaviour
 
     public void OpenJournal(GameObject goal)
     {
+        journalUI = Instantiate(journalPrefab);
         journalUI.SetActive(true);
         TextMeshProUGUI goalText = goal.transform.Find("ReflectionContent").GetComponentInChildren<TextMeshProUGUI>();
         journalPrompt.text = goalText.text;
+        closeJournal.SetActive(true);
     }
 
-    public void SetEntry(GameObject bullet, int index)
+    public void CloseJournal()
     {
-        TextMeshProUGUI displayGoal = bullet.transform.Find("DisplayGoal").GetComponentInChildren<TextMeshProUGUI>();
-        TMP_InputField inputGoal = bullet.transform.Find("InputGoal").GetComponentInChildren<TMP_InputField>();
-        displayGoal.text = inputGoal.text;
-
-        GameObject inputField = GameObject.Find($"Individual Reflection ({index - 2})/InputGoal");
-        inputField.SetActive(false);
-        
-        GameObject enterButton = GameObject.Find($"Individual Reflection ({index - 2})/EnterButton");
-        enterButton.SetActive(false);
-
-        journalBullets[index - 1].SetActive(true);
-        activeBullet = journalBullets[index - 1];
+        Destroy(journalUI);
+        closeJournal.SetActive(false);
     }
 }
-
-// public void OnAnswerSelected(int index)
-//     {
-//         hasAnsweredEarly = true;
-//         DisplayAnswer(index);
-//         SetButtonState(false);
-//         timer.CancelTimer();
-//         scoreText.text  = "Score: " + scoreKeeper.CalculateScore() + "%";
-//     }
-//     void DisplayAnswer(int index)
-//     {
-//         Image buttonImage;
-//         progressBar.value++;
-
-//         if(index == currentQuestion.GetAnswerIndex())
-//         {
-//             questionText.text = "Correct!";
-//             buttonImage = answerButtons[index].GetComponent<Image>();
-//             buttonImage.sprite = correctAnswerSprite;
-//             scoreKeeper.IncrementCorrectAnswers();
-//         }
-//         else
-//         {
-//             correctAnswerIndex = currentQuestion.GetAnswerIndex();
-//             string correctAnswer = currentQuestion.GetAnswer(correctAnswerIndex);
-//             questionText.text = "Sorry, the correct answer was:\n" + correctAnswer;
-//             buttonImage = answerButtons[correctAnswerIndex].GetComponent<Image>();
-//             buttonImage.sprite = correctAnswerSprite;
-//         }
-//     }

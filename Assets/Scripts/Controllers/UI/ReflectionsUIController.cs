@@ -6,17 +6,31 @@ using UnityEngine.UI;
 
 public class ReflectionsUIController : MonoBehaviour
 {
+    [Header("Reflections")]
     public List<ReflectionsSO> reflections = new List<ReflectionsSO>();
     List<ReflectionsSO> usedReflections = new List<ReflectionsSO>();
     ReflectionsSO currentReflection;
     public GameObject[] reflectionButtons;
     public Button shuffleButton;
-    int reflectionTypeIndex;
+    [Header("Journal")]
+    public TextMeshProUGUI journalPrompt;
+    public Button closeJournalButton;
+    public GameObject journalPrefab, journalUI, closeJournal;
 
     public void Start()
     {
         Button btn = shuffleButton.GetComponent<Button>();
         btn.onClick.AddListener(Reset);
+
+        Button closeJournalBtn = closeJournalButton.GetComponent<Button>();
+        closeJournalBtn.onClick.AddListener(CloseJournal);
+
+        for (int i = 0; i < reflectionButtons.Length; i++)
+        {
+            GameObject reflection = reflectionButtons[i];
+            reflectionButtons[i].GetComponent<Button>().onClick.AddListener(() => OpenJournal(reflection));
+        }
+
         DisplayReflection();
     }
 
@@ -61,5 +75,20 @@ public class ReflectionsUIController : MonoBehaviour
             }
         }
         DisplayReflection();
+    }
+
+    public void OpenJournal(GameObject reflection)
+    {
+        journalUI = Instantiate(journalPrefab);
+        journalUI.SetActive(true);
+        TextMeshProUGUI reflectionText = reflection.transform.Find("ReflectionContent").GetComponentInChildren<TextMeshProUGUI>();
+        journalPrompt.text = reflectionText.text;
+        closeJournal.SetActive(true);
+    }
+
+    public void CloseJournal()
+    {
+        Destroy(journalUI);
+        closeJournal.SetActive(false);
     }
 }
