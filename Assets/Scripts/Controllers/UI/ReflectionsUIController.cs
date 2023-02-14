@@ -15,7 +15,7 @@ public class ReflectionsUIController : MonoBehaviour
     [Header("Journal")]
     public TextMeshProUGUI journalPrompt;
     public Button closeJournalButton;
-    public GameObject journalPrefab, journalUI, closeJournal;
+    public GameObject journalPrefab, journalUI, journalBackground;
 
     public void Start()
     {
@@ -79,16 +79,16 @@ public class ReflectionsUIController : MonoBehaviour
 
     public void OpenJournal(GameObject reflection)
     {
+        journalBackground.SetActive(true);
         journalUI = Instantiate(journalPrefab);
+        journalUI.transform.parent = gameObject.transform;
         journalUI.SetActive(true);
         TextMeshProUGUI reflectionText = reflection.transform.Find("ReflectionContent").GetComponentInChildren<TextMeshProUGUI>();
         journalPrompt.text = reflectionText.text;
-        closeJournal.SetActive(true);
     }
 
     public void CloseJournal()
     {
         Destroy(journalUI);
-        closeJournal.SetActive(false);
     }
 }
