@@ -32,4 +32,9 @@ public class StartGameUIController : MonoBehaviour
         nameEnterButton.SetActive(true);
         resetNameButton.SetActive(false);
     }
+
+    public string returnName()
+    {
+        return inputGnomeName.text;
+    }
 }

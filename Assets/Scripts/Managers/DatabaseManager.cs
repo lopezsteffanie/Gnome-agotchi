@@ -27,10 +27,16 @@ public class DatabaseManager : MonoBehaviour
             (
                 needsController.lastTimeFed.ToString(),
                 needsController.lastTimeHappy.ToString(),
-                needsController.lastTimeGainedEnergy.ToString() ,
+                needsController.lastTimeGainedEnergy.ToString(),
+                needsController.lastTimeAged.ToString(),
                 needsController.food,
                 needsController.happiness,
-                needsController.energy
+                needsController.energy,
+                needsController.age,
+                needsController.foodTickRate,
+                needsController.happinessTickRate,
+                needsController.energyTickRate,
+                needsController.ageTickRate
             );
             SavePet(pet);
         }
@@ -46,10 +52,15 @@ public class DatabaseManager : MonoBehaviour
                     pet.food,
                     pet.happiness,
                     pet.energy,
-                    5,2,1,
+                    pet.age,
+                    pet.foodTickRate,
+                    pet.happinessTickRate,
+                    pet.energyTickRate,
+                    pet.ageTickRate,
                     DateTime.Parse(pet.lastTimeFed),
                     DateTime.Parse(pet.lastTimeHappy),
-                    DateTime.Parse(pet.lastTimeGainedEnergy)
+                    DateTime.Parse(pet.lastTimeGainedEnergy),
+                    DateTime.Parse(pet.lastTimeAged)
                 );
         }
     }

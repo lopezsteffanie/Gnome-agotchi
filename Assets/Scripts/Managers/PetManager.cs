@@ -45,4 +45,9 @@ public class PetManager : MonoBehaviour
     {
         Debug.Log("Dead");
     }
+
+    public void Age()
+    {
+        Debug.Log("You have aged up");
+    }
 }

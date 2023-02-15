@@ -3,15 +3,16 @@ using UnityEngine;
 
 public class NeedsController : MonoBehaviour
 {
-    public int food, happiness, energy;
-    public int foodTickRate, happinessTickRate, energyTickRate;
-    public DateTime lastTimeFed, lastTimeHappy, lastTimeGainedEnergy;
+    public int food, happiness, energy, age;
+    public int foodTickRate, happinessTickRate, energyTickRate, ageTickRate;
+    public DateTime lastTimeFed, lastTimeHappy, lastTimeGainedEnergy, lastTimeAged;
 
     private void Awake()
     {
         try
         {
-            Initialize(food, happiness, energy, foodTickRate, happinessTickRate, energyTickRate);
+            Initialize(food, happiness, energy, age, foodTickRate, happinessTickRate, energyTickRate, ageTickRate, lastTimeFed, lastTimeHappy, lastTimeGainedEnergy, lastTimeAged);
+            UpdatePetUI(food, happiness, energy, age);
         }
         catch (System.Exception)
         {
@@ -19,30 +20,35 @@ public class NeedsController : MonoBehaviour
         }
     } 
 
-    public void Initialize(int food, int happiness, int energy,
-        int foodTickRate, int happinessTickRate, int energyTickRate)
+    public void Initialize(int food, int happiness, int energy, int age,
+        int foodTickRate, int happinessTickRate, int energyTickRate, int ageTickRate)
     {
         lastTimeFed = DateTime.Now;
         lastTimeHappy = DateTime.Now;
         lastTimeGainedEnergy = DateTime.Now;
+        lastTimeAged = DateTime.Now;
         this.food = food;
         this.happiness = happiness;
         this.energy = energy;
+        this.age = age;
         this.foodTickRate = foodTickRate;
         this.happinessTickRate = happinessTickRate;
         this.energyTickRate = energyTickRate;
-        PetUIController.instance.UpdateImages(food, happiness, energy);
-        PetUIController.instance.UpdateText(food, happiness, energy);
+        this.ageTickRate = ageTickRate;
+        // PetUIController.instance.UpdateImages(food, happiness, energy, age);
+        // PetUIController.instance.UpdateText(food, happiness, energy, age);
+        UpdatePetUI(food, happiness, energy, age);
     }
 
-    public void Initialize(int food, int happiness, int energy,
-        int foodTickRate, int happinessTickRate, int energyTickRate,
-        DateTime lastTimeFed, DateTime lastTimeHappy, DateTime lastTimeGainedEnergy)
+    public void Initialize(int food, int happiness, int energy, int age,
+        int foodTickRate, int happinessTickRate, int energyTickRate, int ageTickRate,
+        DateTime lastTimeFed, DateTime lastTimeHappy, DateTime lastTimeGainedEnergy, DateTime lastTimeAged)
     {
 
         this.lastTimeFed = lastTimeFed;
         this.lastTimeHappy = lastTimeHappy;
         this.lastTimeGainedEnergy = lastTimeGainedEnergy;
+        this.lastTimeAged = lastTimeAged;
 
         this.food = food
             - foodTickRate
@@ -56,14 +62,18 @@ public class NeedsController : MonoBehaviour
             - energyTickRate
             * TickAmountSinceLastTimeToCurrentTime(lastTimeGainedEnergy, TimingManager.instance.hourLength);
 
+        this.age = age
+            + ageTickRate
+            * TickAmountSinceLastTimeToCurrentTime(lastTimeAged, TimingManager.instance.hourLength);
+
         this.foodTickRate = foodTickRate;
         this.happinessTickRate = happinessTickRate;
         this.energyTickRate = energyTickRate;
+        this.ageTickRate  = ageTickRate;
+
         if (this.food < 0) this.food = 0;
         if (this.happiness < 0) this.happiness = 0;
         if (this.energy < 0) this.energy = 0;
-        PetUIController.instance.UpdateImages(this.food, this.happiness, this.energy);
-        PetUIController.instance.UpdateText(food, happiness, energy);
     }
 
     private void Update()
@@ -73,8 +83,10 @@ public class NeedsController : MonoBehaviour
             ChangeFood(-foodTickRate);
             ChangeHappiness(-happinessTickRate);
             ChangeEnergy(-energyTickRate);
-            PetUIController.instance.UpdateImages(food, happiness, energy);
-            PetUIController.instance.UpdateText(food, happiness, energy);
+            ChangeAge(ageTickRate);
+            // PetUIController.instance.UpdateImages(food, happiness, energy, age);
+            // PetUIController.instance.UpdateText(food, happiness, energy, age);
+            UpdatePetUI(food, happiness, energy, age);
         }
     }
 
@@ -87,7 +99,7 @@ public class NeedsController : MonoBehaviour
         }
         if(food < 0)
         {
-            PetManager.instance.Die();
+            // PetManager.instance.Die();
         }
         else if(food > 100) food = 100;
     }
@@ -101,7 +113,7 @@ public class NeedsController : MonoBehaviour
         }
         if(happiness < 0)
         {
-            PetManager.instance.Die();
+            // PetManager.instance.Die();
         }
         else if(happiness > 100)happiness = 100;
 
@@ -116,9 +128,32 @@ public class NeedsController : MonoBehaviour
         }
         if(energy < 0)
         {
-            PetManager.instance.Die();
+            // PetManager.instance.Die();
         }
         else if(energy > 100) energy = 100;
+    }
+
+    public void ChangeAge(int amount)
+    {
+        age += amount;
+        if (amount > 0)
+        {
+            lastTimeAged = DateTime.Now;
+        }
+        if (age > 20)
+        {
+            PetManager.instance.Age();
+        }
+        else if (age > 60)
+        {
+            PetManager.instance.Die();
+        }
+    }
+
+    public void UpdatePetUI(int food, int happiness, int energy, int age)
+    {
+        PetUIController.instance.UpdateImages(food, happiness, energy, age);
+        PetUIController.instance.UpdateText(food, happiness, energy, age);
     }
 
     public int TickAmountSinceLastTimeToCurrentTime(DateTime lastTime, float tickRateInSeconds)
