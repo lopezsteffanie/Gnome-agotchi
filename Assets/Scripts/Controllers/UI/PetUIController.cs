@@ -5,9 +5,9 @@ using TMPro;
 public class PetUIController : MonoBehaviour
 {
     public Image foodImage, happinessImage, energyImage, ageImage;
-    public TextMeshProUGUI foodLevelsText, happinessLevelsText, energyLevelsText, daysToNextAgeText, currentAgeText;
-
+    public TextMeshProUGUI foodLevelsText, happinessLevelsText, energyLevelsText, daysToNextAgeText, currentAgeText, displayNameText;
     public static PetUIController instance;
+    public StartGameUIController startGameUIController;
 
     private void Awake()
     {
@@ -17,7 +17,10 @@ public class PetUIController : MonoBehaviour
         }
         else Debug.LogWarning("More than one PetUIController in this Scene");
     }
-
+    private void Start()
+    {
+        displayNameText.text = "Name: " + startGameUIController.returnName();
+    }
     public void UpdateImages(int food, int happiness, int energy, int age)
     {
         foodImage.fillAmount = (float) food / 100;

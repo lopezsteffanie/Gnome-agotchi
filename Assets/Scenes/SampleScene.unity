@@ -2550,7 +2550,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &363098228
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3348,6 +3348,18 @@ MonoBehaviour:
           m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 1040911688}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1779681423}
         m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
         m_MethodName: set_enabled
         m_Mode: 6
@@ -6377,7 +6389,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Age: 5'
+  m_text: 'Age: '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: aff6bab1d5f1344ef9116b975bd3859d, type: 2}
   m_sharedMaterial: {fileID: 6005945196966816838, guid: aff6bab1d5f1344ef9116b975bd3859d, type: 2}
@@ -7374,7 +7386,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1045863359
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7473,6 +7485,8 @@ MonoBehaviour:
   energyLevelsText: {fileID: 897232725}
   daysToNextAgeText: {fileID: 1890033396}
   currentAgeText: {fileID: 891470686}
+  displayNameText: {fileID: 1767793378}
+  startGameUIController: {fileID: 363098232}
 --- !u!1 &1052073808
 GameObject:
   m_ObjectHideFlags: 0
@@ -11180,6 +11194,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1647331384}
   m_CullTransparentMesh: 1
+--- !u!1 &1651013651 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 966295690225286179, guid: ac1902dade2dd45028bb115f86fc47c1, type: 3}
+  m_PrefabInstance: {fileID: 2424724273950458906}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1656461661
 GameObject:
   m_ObjectHideFlags: 0
@@ -12073,7 +12092,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Name: Stevie'
+  m_text: 'Name: '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: aff6bab1d5f1344ef9116b975bd3859d, type: 2}
   m_sharedMaterial: {fileID: 6005945196966816838, guid: aff6bab1d5f1344ef9116b975bd3859d, type: 2}
@@ -12316,6 +12335,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 995dd6995fb814aa89182cda182c7a28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1779681423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 19833218}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cad7d49836ae445c799730af6207fffe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  needsController: {fileID: 1040911688}
+  age: 0
+  gnomeSprites:
+  - {fileID: 824441357}
+  - {fileID: 1651013651}
+  - {fileID: 1813015734}
+--- !u!1 &1813015734 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2424724273268407640, guid: ac1902dade2dd45028bb115f86fc47c1, type: 3}
+  m_PrefabInstance: {fileID: 2424724273950458906}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1841180719
 GameObject:
   m_ObjectHideFlags: 0
@@ -14523,7 +14565,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameHourTimer: 0
-  hourLength: 15
+  hourLength: 1
 --- !u!114 &2068807070
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15180,6 +15222,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 966295690225286179, guid: ac1902dade2dd45028bb115f86fc47c1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1346664227356702297, guid: ac1902dade2dd45028bb115f86fc47c1, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -15236,9 +15282,17 @@ PrefabInstance:
       propertyPath: ageTickRate
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2424724273850386770, guid: ac1902dade2dd45028bb115f86fc47c1, type: 3}
+      propertyPath: startGameUIController
+      value: 
+      objectReference: {fileID: 363098232}
     - target: {fileID: 2424724273850386781, guid: ac1902dade2dd45028bb115f86fc47c1, type: 3}
       propertyPath: m_Name
       value: Pet
+      objectReference: {fileID: 0}
+    - target: {fileID: 6108291043187123041, guid: ac1902dade2dd45028bb115f86fc47c1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac1902dade2dd45028bb115f86fc47c1, type: 3}

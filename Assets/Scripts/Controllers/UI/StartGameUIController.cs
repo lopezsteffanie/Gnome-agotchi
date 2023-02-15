@@ -22,11 +22,11 @@ public class StartGameUIController : MonoBehaviour
         inputField.SetActive(false);
         nameEnterButton.SetActive(false);
         resetNameButton.SetActive(true);
-        inputGnomeName.text = "";
     }
 
     public void resetName()
     {
+        inputGnomeName.text = "";
         displayGnomeName.text = "Your gnome's name:";
         inputField.SetActive(true);
         nameEnterButton.SetActive(true);

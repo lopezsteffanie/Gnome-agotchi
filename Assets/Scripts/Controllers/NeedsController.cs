@@ -6,23 +6,27 @@ public class NeedsController : MonoBehaviour
     public int food, happiness, energy, age;
     public int foodTickRate, happinessTickRate, energyTickRate, ageTickRate;
     public DateTime lastTimeFed, lastTimeHappy, lastTimeGainedEnergy, lastTimeAged;
+    public string name;
+    public StartGameUIController startGameUIController;
 
-    private void Awake()
+    public void Start()
     {
+        name = startGameUIController.returnName();
         try
         {
-            Initialize(food, happiness, energy, age, foodTickRate, happinessTickRate, energyTickRate, ageTickRate, lastTimeFed, lastTimeHappy, lastTimeGainedEnergy, lastTimeAged);
+            Initialize(name, food, happiness, energy, age, foodTickRate, happinessTickRate, energyTickRate, ageTickRate, lastTimeFed, lastTimeHappy, lastTimeGainedEnergy, lastTimeAged);
             UpdatePetUI(food, happiness, energy, age);
         }
         catch (System.Exception)
         {
-            Debug.Log("Initialize was not set to an object");
+            Debug.Log("NeedsController: Initialize was not set to an object");
         }
     } 
 
-    public void Initialize(int food, int happiness, int energy, int age,
+    public void Initialize(string name,int food, int happiness, int energy, int age,
         int foodTickRate, int happinessTickRate, int energyTickRate, int ageTickRate)
     {
+        this.name = name;
         lastTimeFed = DateTime.Now;
         lastTimeHappy = DateTime.Now;
         lastTimeGainedEnergy = DateTime.Now;
@@ -35,36 +39,23 @@ public class NeedsController : MonoBehaviour
         this.happinessTickRate = happinessTickRate;
         this.energyTickRate = energyTickRate;
         this.ageTickRate = ageTickRate;
-        // PetUIController.instance.UpdateImages(food, happiness, energy, age);
-        // PetUIController.instance.UpdateText(food, happiness, energy, age);
         UpdatePetUI(food, happiness, energy, age);
     }
 
-    public void Initialize(int food, int happiness, int energy, int age,
+    public void Initialize(string name, int food, int happiness, int energy, int age,
         int foodTickRate, int happinessTickRate, int energyTickRate, int ageTickRate,
         DateTime lastTimeFed, DateTime lastTimeHappy, DateTime lastTimeGainedEnergy, DateTime lastTimeAged)
     {
-
+        this.name = name;
         this.lastTimeFed = lastTimeFed;
         this.lastTimeHappy = lastTimeHappy;
         this.lastTimeGainedEnergy = lastTimeGainedEnergy;
         this.lastTimeAged = lastTimeAged;
 
-        this.food = food
-            - foodTickRate
-            * TickAmountSinceLastTimeToCurrentTime(lastTimeFed, TimingManager.instance.hourLength);
-
-        this.happiness = happiness
-            - happinessTickRate
-            * TickAmountSinceLastTimeToCurrentTime(lastTimeHappy, TimingManager.instance.hourLength);
-            
-        this.energy = energy
-            - energyTickRate
-            * TickAmountSinceLastTimeToCurrentTime(lastTimeGainedEnergy, TimingManager.instance.hourLength);
-
-        this.age = age
-            + ageTickRate
-            * TickAmountSinceLastTimeToCurrentTime(lastTimeAged, TimingManager.instance.hourLength);
+        this.food = food - foodTickRate;
+        this.happiness = happiness - happinessTickRate;
+        this.energy = energy - energyTickRate;
+        this.age = age + ageTickRate;
 
         this.foodTickRate = foodTickRate;
         this.happinessTickRate = happinessTickRate;
@@ -156,24 +147,31 @@ public class NeedsController : MonoBehaviour
         PetUIController.instance.UpdateText(food, happiness, energy, age);
     }
 
-    public int TickAmountSinceLastTimeToCurrentTime(DateTime lastTime, float tickRateInSeconds)
+    public int returnAge()
     {
-        DateTime currentDateTime = DateTime.Now;
-        int dayOfYearDifference = currentDateTime.DayOfYear - lastTime.DayOfYear;
-
-        if (currentDateTime.Year > lastTime.Year 
-            || dayOfYearDifference >= 7) return 1500;
-
-        int dayDifferenceSecondsAmount = dayOfYearDifference * 86400;
-        if (dayOfYearDifference > 0) return Mathf.RoundToInt(dayDifferenceSecondsAmount/tickRateInSeconds);
-
-        int hourDifferenceSecondsAmount = (currentDateTime.Hour - lastTime.Hour) * 3600;
-        if (hourDifferenceSecondsAmount > 0) return Mathf.RoundToInt(hourDifferenceSecondsAmount/tickRateInSeconds);
-
-        int minuteDifferenceSecondsAmount = (currentDateTime.Minute - lastTime.Minute) * 60;
-        if (minuteDifferenceSecondsAmount > 0) return Mathf.RoundToInt(minuteDifferenceSecondsAmount/tickRateInSeconds);
-
-        int secondDifferenceAmount = currentDateTime.Second - lastTime.Second;
-        return Mathf.RoundToInt(secondDifferenceAmount/tickRateInSeconds);
+        return age;
     }
+
+    // public int TickAmountSinceLastTimeToCurrentTime(DateTime lastTime, float tickRateInSeconds)
+    // {
+    //     DateTime currentDateTime = DateTime.Now;
+    //     int dayOfYearDifference = currentDateTime.DayOfYear - lastTime.DayOfYear;
+
+    //     if (currentDateTime.Year > lastTime.Year 
+    //         || dayOfYearDifference >= 7) return 1500;
+
+    //     int dayDifferenceSecondsAmount = dayOfYearDifference * 86400;
+    //     if (dayOfYearDifference > 0) return Mathf.RoundToInt(dayDifferenceSecondsAmount/tickRateInSeconds);
+
+    //     int hourDifferenceSecondsAmount = (currentDateTime.Hour - lastTime.Hour) * 3600;
+    //     if (hourDifferenceSecondsAmount > 0) return Mathf.RoundToInt(hourDifferenceSecondsAmount/tickRateInSeconds);
+
+    //     int minuteDifferenceSecondsAmount = (currentDateTime.Minute - lastTime.Minute) * 60;
+    //     if (minuteDifferenceSecondsAmount > 0) return Mathf.RoundToInt(minuteDifferenceSecondsAmount/tickRateInSeconds);
+
+    //     int secondDifferenceAmount = currentDateTime.Second - lastTime.Second;
+    //     return Mathf.RoundToInt(secondDifferenceAmount/tickRateInSeconds);
+    // }
+
+    // (* )TickAmountSinceLastTimeToCurrentTime(lastTimeFed, TimingManager.instance.hourLength);
 }
