@@ -152,6 +152,21 @@ public class NeedsController : MonoBehaviour
         return age;
     }
 
+    public int returnFood()
+    {
+        return food;
+    }
+
+    public int returnHappiness()
+    {
+        return happiness;
+    }
+
+    public int returnEnergy()
+    {
+        return energy;
+    }
+
     // public int TickAmountSinceLastTimeToCurrentTime(DateTime lastTime, float tickRateInSeconds)
     // {
     //     DateTime currentDateTime = DateTime.Now;
