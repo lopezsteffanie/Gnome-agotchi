@@ -12,7 +12,6 @@ public class PetAgeController : MonoBehaviour
     {
         age = needsController.returnAge();
         ChangeSprite(age);
-        EndGameScene(age);
     }
 
     public void ChangeSprite(int age)
@@ -44,14 +43,12 @@ public class PetAgeController : MonoBehaviour
             gnomeSprites[1].SetActive(false);
             gnomeSprites[2].SetActive(false);
             gnomeSprites[3].SetActive(true);
+            EndGameScene(age);
         }
     }
 
     public void EndGameScene(int age)
     {
-        if (age == 60)
-        {
-            GetComponent<EndGamePetController>().enabled = true;
-        }
+        GetComponent<EndGamePetController>().enabled = true;
     }
 }

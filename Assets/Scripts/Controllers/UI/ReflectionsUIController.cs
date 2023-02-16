@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class ReflectionsUIController : MonoBehaviour
 {
+    public GameObject pet;
     [Header("Reflections")]
     public List<ReflectionsSO> reflections = new List<ReflectionsSO>();
     List<ReflectionsSO> usedReflections = new List<ReflectionsSO>();
@@ -85,6 +86,8 @@ public class ReflectionsUIController : MonoBehaviour
         journalUI.SetActive(true);
         TextMeshProUGUI reflectionText = reflection.transform.Find("ReflectionContent").GetComponentInChildren<TextMeshProUGUI>();
         journalPrompt.text = reflectionText.text;
+        int happiness = currentReflection.GetHappinessPoints();
+        pet.GetComponent<NeedsController>().ChangeHappiness(happiness);
     }
 
     public void CloseJournal()

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -52,6 +53,12 @@ public class JournalUIController : MonoBehaviour
 
         journalBullets[index + 1].SetActive(true);
         NextEntry();
+
+        int count = 0;
+        foreach (char word in inputGoal.text)
+        {
+            count++;
+        }
     }
 
     public void NextEntry()

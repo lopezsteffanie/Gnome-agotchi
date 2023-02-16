@@ -7,7 +7,7 @@ using TMPro;
 public class MiniGameEndPanelController : MonoBehaviour
 {
     public TextMeshProUGUI resultText, titleText;
-    public GameObject pauseButton;
+    public GameObject pauseButton, pet;
 
     public void Initialize(int score, float timeRemaining, bool victory)
     {
@@ -15,6 +15,7 @@ public class MiniGameEndPanelController : MonoBehaviour
         resultText.text = 
             string.Format("You obtained {0} points, and had {1} seconds left", score, timeRemaining);
         titleText.text = victory ? "You won!" : "You lost!";
+        pet.GetComponent<NeedsController>().ChangeHappiness(score);
     }
     
     private void OnDisable()

@@ -6008,11 +6008,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 861042347}
   m_CullTransparentMesh: 1
---- !u!1 &868811258 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6350103362439057362, guid: ac1902dade2dd45028bb115f86fc47c1, type: 3}
-  m_PrefabInstance: {fileID: 2424724273950458906}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &869569660
 GameObject:
   m_ObjectHideFlags: 0
@@ -8310,6 +8305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de777a29f52c64563b7a029fd8e0c9b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pet: {fileID: 19833218}
   goals:
   - {fileID: 11400000, guid: 0d90da411a1174ba8b298923cd9700ba, type: 2}
   - {fileID: 11400000, guid: d44b3c755b6de4dee8a43ac3fe3c79f5, type: 2}
@@ -13974,6 +13970,7 @@ MonoBehaviour:
   resultText: {fileID: 1052073810}
   titleText: {fileID: 385043389}
   pauseButton: {fileID: 1880880418}
+  pet: {fileID: 0}
 --- !u!1 &1961832798
 GameObject:
   m_ObjectHideFlags: 0
@@ -14549,6 +14546,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4ce4234c69a14ba79f92308f1c80639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pet: {fileID: 19833218}
   reflections:
   - {fileID: 11400000, guid: 3509afae751964892a33e9fbdd799bdc, type: 2}
   - {fileID: 11400000, guid: a54d508bb7b9544d682c9cb1262f005f, type: 2}
@@ -14826,6 +14824,7 @@ GameObject:
   - component: {fileID: 2068807065}
   - component: {fileID: 2068807069}
   - component: {fileID: 2068807070}
+  - component: {fileID: 2068807071}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -14899,7 +14898,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameHourTimer: 0
-  hourLength: 1
+  hourLength: 15
 --- !u!114 &2068807070
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14915,6 +14914,32 @@ MonoBehaviour:
   audioSources: []
   music: []
   sfx: []
+--- !u!114 &2068807071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2068807064}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90dd7b22a710c4750ad0076147399b18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pet: {fileID: 1040911689}
+  petMoveTimer: 7
+  originalPetMoveTimer: 0
+  startingPositions:
+  - {fileID: 4286513071526561685}
+  - {fileID: 4286513071526561684}
+  - {fileID: 4286513071526561683}
+  - {fileID: 4286513071526561682}
+  - {fileID: 4286513071526561681}
+  - {fileID: 4286513071526561680}
+  - {fileID: 4286513071526561679}
+  - {fileID: 4286513071526561678}
+  - {fileID: 4286513071526561677}
+  - {fileID: 4286513071526561676}
 --- !u!1 &2073832815
 GameObject:
   m_ObjectHideFlags: 0
@@ -15561,14 +15586,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1779681423, guid: ac1902dade2dd45028bb115f86fc47c1, type: 3}
-      propertyPath: gnomeSprites.Array.data[3]
-      value: 
-      objectReference: {fileID: 868811258}
     - target: {fileID: 1779681424, guid: ac1902dade2dd45028bb115f86fc47c1, type: 3}
       propertyPath: petUI
       value: 
       objectReference: {fileID: 1045863358}
+    - target: {fileID: 1779681424, guid: ac1902dade2dd45028bb115f86fc47c1, type: 3}
+      propertyPath: manager
+      value: 
+      objectReference: {fileID: 2068807064}
     - target: {fileID: 1779681424, guid: ac1902dade2dd45028bb115f86fc47c1, type: 3}
       propertyPath: gameBackground
       value: 
@@ -15870,3 +15895,53 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 1548531377, guid: 748ba692e89554c7f876dd13748abd55, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 748ba692e89554c7f876dd13748abd55, type: 3}
+--- !u!4 &4286513071526561676 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1021858334726348923, guid: 748ba692e89554c7f876dd13748abd55, type: 3}
+  m_PrefabInstance: {fileID: 4286513071526561675}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4286513071526561677 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5911438221057057138, guid: 748ba692e89554c7f876dd13748abd55, type: 3}
+  m_PrefabInstance: {fileID: 4286513071526561675}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4286513071526561678 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2581464039626028323, guid: 748ba692e89554c7f876dd13748abd55, type: 3}
+  m_PrefabInstance: {fileID: 4286513071526561675}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4286513071526561679 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7688063787069792982, guid: 748ba692e89554c7f876dd13748abd55, type: 3}
+  m_PrefabInstance: {fileID: 4286513071526561675}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4286513071526561680 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1777795769940464038, guid: 748ba692e89554c7f876dd13748abd55, type: 3}
+  m_PrefabInstance: {fileID: 4286513071526561675}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4286513071526561681 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2226587534221641312, guid: 748ba692e89554c7f876dd13748abd55, type: 3}
+  m_PrefabInstance: {fileID: 4286513071526561675}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4286513071526561682 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3728671766326703626, guid: 748ba692e89554c7f876dd13748abd55, type: 3}
+  m_PrefabInstance: {fileID: 4286513071526561675}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4286513071526561683 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1503879822790610925, guid: 748ba692e89554c7f876dd13748abd55, type: 3}
+  m_PrefabInstance: {fileID: 4286513071526561675}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4286513071526561684 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6684386900183979217, guid: 748ba692e89554c7f876dd13748abd55, type: 3}
+  m_PrefabInstance: {fileID: 4286513071526561675}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4286513071526561685 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8662128621280726364, guid: 748ba692e89554c7f876dd13748abd55, type: 3}
+  m_PrefabInstance: {fileID: 4286513071526561675}
+  m_PrefabAsset: {fileID: 0}

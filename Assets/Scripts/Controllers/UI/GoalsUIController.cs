@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class GoalsUIController : MonoBehaviour
 {
+    public GameObject pet;
     [Header("Goals")]
     public List <GoalsForTheDaySO> goals = new List<GoalsForTheDaySO>();
     List<GoalsForTheDaySO> usedGoals = new List<GoalsForTheDaySO>();
@@ -16,6 +17,7 @@ public class GoalsUIController : MonoBehaviour
     public TextMeshProUGUI journalPrompt;
     public Button closeJournalButton;
     public GameObject journalPrefab, journalUI, journalBackground;
+
     public void Start()
     {
         Button shuffleBtn = shuffleButton.GetComponent<Button>();
@@ -81,6 +83,9 @@ public class GoalsUIController : MonoBehaviour
         journalUI.SetActive(true);
         TextMeshProUGUI goalText = goal.transform.Find("ReflectionContent").GetComponentInChildren<TextMeshProUGUI>();
         journalPrompt.text = goalText.text;
+
+        int happiness = currentGoal.GetHappinessPoints();
+        pet.GetComponent<NeedsController>().ChangeHappiness(happiness);
     }
 
     public void CloseJournal()
