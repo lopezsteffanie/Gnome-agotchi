@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 685f1f00f5b3c42c388b6e6dbec2a3bf, type: 3}
+  m_Name: BlueSprites
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 3326606962724587435, guid: 50b258f189d934aca9456cb87b0dec71, type: 3}
+  - {fileID: 708515728494832321, guid: 649e3f40e7b0642a0a4df73ac1dfacac, type: 3}
+  - {fileID: 5227225312890586123, guid: 3142c818432a84ddbb59e9503019fd6f, type: 3}
+  - {fileID: 3925001791554797829, guid: a7c0157e4a27b46cd9aa1f67efc9d187, type: 3}
+  - {fileID: 4493782908370513273, guid: 0a5716414388940fdb69329de5b28632, type: 3}
