@@ -38,7 +38,7 @@
 <h2 id="game-play"> :desktop_computer: Game Play</h2>
 
 <p align="justify">
-    Click (here)[https://stevie-codes-it.itch.io/gnome-agotchi] to play.
+    Link to play: https://stevie-codes-it.itch.io/gnome-agotchi
 </p>
 
 <!--PROJECT FILES DESCRIPTION-->
